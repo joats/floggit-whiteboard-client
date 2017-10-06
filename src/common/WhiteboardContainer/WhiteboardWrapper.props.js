@@ -7,11 +7,12 @@ const props = {
     infoList: PropTypes.arrayOf(PropTypes.shape({
       value: PropTypes.string.isRequired,
     })),
-    color: PropTypes.string,
+    color: PropTypes.string.isRequired,
   })),
   handleAdd: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
-  handleUpdate: PropTypes.func.isRequired,
+  handleUpdateText: PropTypes.func.isRequired,
+  handleUpdateColor: PropTypes.func.isRequired,
 };
 
 export default props;
