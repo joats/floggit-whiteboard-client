@@ -3,8 +3,8 @@ import React from 'react';
 import addComponentProps from './AddComponent.props';
 
 const Add = (props) => {
-  const handleClick = (func) => {
-    props.onAdd(func);
+  const handleClick = () => {
+    props.onAdd({ title: 'hdhdh', infoList:['mdmd'] });
   };
 
   return (

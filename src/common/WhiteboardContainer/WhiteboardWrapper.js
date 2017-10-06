@@ -12,7 +12,7 @@ const WhiteboardWrapper = props => (
       notes={props.notes}
       handleRemove={props.handleRemove}
     />
-    <AddComponent />
+    <AddComponent onAdd={props.handleAdd} />
   </div>
 );
 
