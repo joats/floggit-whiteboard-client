@@ -4,9 +4,7 @@ const props = {
   notes: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    infoList: PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.string.isRequired,
-    })),
+    infoList: PropTypes.arrayOf(PropTypes.string),
     color: PropTypes.string.isRequired,
   })),
 };

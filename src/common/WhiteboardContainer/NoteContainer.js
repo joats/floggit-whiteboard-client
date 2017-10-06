@@ -4,7 +4,7 @@ import WhiteboardWrapper from './WhiteboardWrapper';
 import { addNote, removeNote, updateNoteText, updateNoteColor } from '../../reduxStore/config/notes';
 
 const mapStateToProps = state => ({
-  notes: state.notes,
+  notes: state,
 });
 
 const mapDispatchToProps = dispatch => ({
