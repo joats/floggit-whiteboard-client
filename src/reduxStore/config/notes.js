@@ -1,5 +1,4 @@
 import noteApi from '../../utils/noteApi';
-import store from '../';
 
 // ACTIONS
 const NOTE_ADD = 'NOTE_ADD';
@@ -35,7 +34,7 @@ const reducer = (state = [], action) => {
 };
 
 // ACTION CREATORS
-const internaddNote = (id, note) => ({
+const internaladdNote = (id, note) => ({
   type: NOTE_ADD,
   data: {
     id,
@@ -67,14 +66,18 @@ const updateNoteColor = note => ({
   },
 });
 
-const replaceNotes = notes => ({
+const internalReplaceNotes = notes => ({
   type: NOTE_REPLACE_NOTES,
   data: {
     notes,
   },
 });
 
-const addNote = note => noteApi.add(note).then(id => store.dispatch(internaddNote(id, note)));
+const replaceNotes = () => dispatch => noteApi.getAll()
+  .then(notes => dispatch(internalReplaceNotes(notes)));
+
+const addNote = note => dispatch => noteApi.add(note)
+  .then(id => dispatch(internaladdNote(id, note)));
 
 export { addNote, removeNote, updateNoteText, updateNoteColor, replaceNotes };
 export default reducer;
