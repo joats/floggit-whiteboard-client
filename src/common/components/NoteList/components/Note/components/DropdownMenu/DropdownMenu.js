@@ -8,22 +8,22 @@ const DropdownMenu = (props) => {
   const handleClick = (info) => {
     switch (info.key) {
       case 'edit':
-        props.onEdit({ id: props.note.id, title: 'hello', infoList: props.note.infoList });
+        props.onEdit({ id: props.note.id, title: 'hello', infoList: [...props.note.infoList, 'listItem2'], color: props.note.color });
         break;
       case 'remove':
         props.onRemove(props.note.id);
         break;
       case 'primary':
-        props.onChangeColor({ id: props.note.id, color: 'primary' });
+        props.onChangeColor({ id: props.note.id, title: props.note.title, infoList: props.note.infoList, color: 'primary' });
         break;
       case 'secondary':
-        props.onChangeColor({ id: props.note.id, color: 'secondary' });
+        props.onChangeColor({ id: props.note.id, title: props.note.title, infoList: props.note.infoList, color: 'secondary' });
         break;
       case 'tertiary':
-        props.onChangeColor({ id: props.note.id, color: 'tertiary' });
+        props.onChangeColor({ id: props.note.id, title: props.note.title, infoList: props.note.infoList, color: 'tertiary' });
         break;
       case 'quaternary':
-        props.onChangeColor({ id: props.note.id, color: 'quaternary' });
+        props.onChangeColor({ id: props.note.id, title: props.note.title, infoList: props.note.infoList, color: 'quaternary' });
         break;
       default:
         break;
