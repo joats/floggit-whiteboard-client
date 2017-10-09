@@ -23,7 +23,7 @@ const reducer = (state = [], action) => {
     }
     case NOTE_UPDATE_COLOR: {
       return state.map(note => ((note.id === action.data.id) ?
-        { ...note, ...action.data.notes } : note));
+        { ...note, ...action.data } : note));
     }
     case NOTE_REPLACE_NOTES: {
       return [...action.data.notes];

@@ -1,18 +1,19 @@
 import React from 'react';
 
 import noteListProps from './NoteList.props';
+import Note from './components/Note';
 
 const NoteList = props => (
   <ul>
     {
-      props.notes.map(notes => (
-        <li key={notes.id}>
-            key={notes.id}
-          {notes.id}
-          {notes.title}
-          {notes.infoList.map(info => info)}
-          {notes.color}
-        </li>
+      props.notes.map(note => (
+        <Note
+          key={note.id}
+          note={note}
+          onRemove={props.onRemove}
+          onEdit={props.onEdit}
+          onChangeColor={props.onChangeColor}
+        />
       ))
     }
   </ul>
