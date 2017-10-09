@@ -1,10 +1,11 @@
-import { createStore } from 'redux';
+import noteApi from '../../utils/noteApi';
 
 // ACTIONS
 const NOTE_ADD = 'NOTE_ADD';
 const NOTE_REMOVE = 'NOTE_REMOVE';
 const NOTE_UPDATE_TEXT = 'NOTE_UPDATE_TEXT';
 const NOTE_UPDATE_COLOR = 'NOTE_UPDATE_COLOR';
+const NOTE_REPLACE_NOTES = 'NOTE_REPLACE_NOTES';
 
 
 // REDUCER
@@ -22,7 +23,10 @@ const reducer = (state = [], action) => {
     }
     case NOTE_UPDATE_COLOR: {
       return state.map(note => ((note.id === action.data.id) ?
-        { ...note, ...action.data } : note));
+        { ...note, ...action.data.notes } : note));
+    }
+    case NOTE_REPLACE_NOTES: {
+      return [...action.data.notes];
     }
     default:
       return state;
@@ -30,10 +34,10 @@ const reducer = (state = [], action) => {
 };
 
 // ACTION CREATORS
-const addNote = note => ({
+const internaladdNote = (id, note) => ({
   type: NOTE_ADD,
   data: {
-    id: (+(new Date())).toString(),
+    id,
     title: note.title,
     infoList: note.infoList,
     color: note.color,
@@ -62,14 +66,18 @@ const updateNoteColor = note => ({
   },
 });
 
-const store = createStore(reducer);
+const internalReplaceNotes = notes => ({
+  type: NOTE_REPLACE_NOTES,
+  data: {
+    notes,
+  },
+});
 
-// TODO REMOVE BEFORE LAUNCH
-window.store = store;
-window.addNote = addNote;
-window.removeNote = removeNote;
-window.updateNoteText = updateNoteText;
-window.updateNoteColor = updateNoteColor;
+const replaceNotes = () => dispatch => noteApi.getAll()
+  .then(notes => dispatch(internalReplaceNotes(notes)));
 
-export { addNote, removeNote, updateNoteText, updateNoteColor };
+const addNote = note => dispatch => noteApi.add(note)
+  .then(id => dispatch(internaladdNote(id, note)));
+
+export { addNote, removeNote, updateNoteText, updateNoteColor, replaceNotes };
 export default reducer;

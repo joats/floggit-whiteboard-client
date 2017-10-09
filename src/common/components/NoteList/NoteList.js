@@ -10,7 +10,7 @@ const NoteList = props => (
             key={notes.id}
           {notes.id}
           {notes.title}
-          {notes.infoList.map(info => info.value)}
+          {notes.infoList.map(info => info)}
           {notes.color}
         </li>
       ))

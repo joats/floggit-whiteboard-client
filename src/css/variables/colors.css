@@ -1,10 +1,9 @@
 :root {
   /* Main colors */
   --color-primary: #ff8;
-  --color-secondary: #bdd684;
-  --color-tertiary: #e2f0d6;
-  --color-quartinery: #f6ffe0;
-  --color-quinary: #10222b;
+  --color-secondary: #9affa5;
+  --color-tertiary: #92ebff;
+  --color-quartinery: #d6abff;
 
   /* Gray colors */
   --color-neutral-90: #1a1a1a;
