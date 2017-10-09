@@ -15,19 +15,15 @@ const DropdownMenu = (props) => {
         break;
       case 'primary':
         props.onChangeColor({ id: props.note.id, color: 'primary' });
-        console.log(props.note);
         break;
       case 'secondary':
         props.onChangeColor({ id: props.note.id, color: 'secondary' });
-        console.log(props.note);
         break;
       case 'tertiary':
         props.onChangeColor({ id: props.note.id, color: 'tertiary' });
-        console.log(props.note);
         break;
       case 'quaternary':
         props.onChangeColor({ id: props.note.id, color: 'quaternary' });
-        console.log(props.note);
         break;
       default:
         break;
