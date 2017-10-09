@@ -10,7 +10,9 @@ const WhiteboardWrapper = props => (
     <InfoComponent logo="../img/logo.svg" />
     <NoteList
       notes={props.notes}
-      handleRemove={props.handleRemove}
+      onRemove={props.handleRemove}
+      onEdit={props.handleUpdateText}
+      onChangeColor={props.handleUpdateColor}
     />
     <AddComponent onAdd={props.handleAdd} />
   </div>

@@ -8,39 +8,54 @@ const DropdownMenu = (props) => {
   const handleClick = (info) => {
     switch (info.key) {
       case 'edit':
-        props.onEdit();
+        props.onEdit({ id: props.note.id, title: 'hello', infoList: props.note.infoList });
         break;
       case 'remove':
-        props.onRemove();
+        props.onRemove(props.note.id);
         break;
       case 'primary':
+        props.onChangeColor({ id: props.note.id, color: 'primary' });
+        console.log(props.note);
+        break;
       case 'secondary':
-        props.onChangeColor();
+        props.onChangeColor({ id: props.note.id, color: 'secondary' });
+        console.log(props.note);
+        break;
+      case 'tertiary':
+        props.onChangeColor({ id: props.note.id, color: 'tertiary' });
+        console.log(props.note);
+        break;
+      case 'quaternary':
+        props.onChangeColor({ id: props.note.id, color: 'quaternary' });
+        console.log(props.note);
         break;
       default:
         break;
     }
   };
   return (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: '40px' }}>
       <Menu
+        openSubMenuOnMouseEnter={false}
         multiple
         onClick={handleClick}
       >
-        {props.titles.map((titles) => {
-          if (titles.title.includes('color')) {
+        <SubMenu>
+          {props.titles.map((title) => {
+            if (title.includes('color')) {
+              return (
+                <SubMenu key={title} title={title}>
+                  {props.colors.map(color => (
+                    <MenuItem key={color}>{color}</MenuItem>
+                  ))}
+                </SubMenu>
+              );
+            }
             return (
-              <SubMenu key={titles.title} title={titles.title}>
-                {props.colors.map(colors => (
-                  <MenuItem key={colors.color}>{colors.color}</MenuItem>
-                ))}
-              </SubMenu>
+              <MenuItem key={title}>{title}</MenuItem>
             );
-          }
-          return (
-            <MenuItem key={titles.title}>{titles.title}</MenuItem>
-          );
-        })}
+          })}
+        </SubMenu>
       </Menu>
     </div>
   );

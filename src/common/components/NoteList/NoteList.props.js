@@ -7,6 +7,9 @@ const props = {
     infoList: PropTypes.arrayOf(PropTypes.string),
     color: PropTypes.string.isRequired,
   })),
+  onRemove: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onChangeColor: PropTypes.func.isRequired,
 };
 
 export default props;
