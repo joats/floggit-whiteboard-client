@@ -1,3 +1,35 @@
+
+h2,
+p {
+  font-size: 100%;
+  font-weight: normal;
+}
+
 ul {
-  
+  overflow: scroll;
+}
+
+.note {
+  background: var(--color-primary);
+  display: block;
+  height: 10em;
+  width: 10em;
+  padding: 1em;
+  box-shadow: 3px 3px 3px var(--color-neutral-70);
+  margin-left: 3em;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  transition: 0.15s linear;
+}
+
+.note:hover {
+  box-shadow: 5px 5px 5px var(--color-neutral-70);
+  transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+  transition: 0.15s linear;
+}
+
+.notes {
+  display: flex;
 }
