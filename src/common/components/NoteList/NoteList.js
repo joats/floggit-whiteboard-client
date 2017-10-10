@@ -4,7 +4,7 @@ import noteListProps from './NoteList.props';
 import Note from './components/Note';
 
 const NoteList = props => (
-  <ul>
+  <ul className="notes">
     {
       props.notes.map(note => (
         <Note

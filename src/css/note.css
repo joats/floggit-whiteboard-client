@@ -1,0 +1,78 @@
+.note {
+  display: flex;
+  flex-wrap: wrap;
+  height: 20em;
+  width: 20em;
+  padding: 1em;
+  box-shadow: 3px 3px 3px var(--color-neutral-70);
+  margin-left: 3em;
+  margin-top: 3em;
+  transition: 0.15s linear;
+  overflow: hidden;
+  align-content: flex-start;
+}
+
+.primary {
+  background-color: var(--color-primary);
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+}
+
+.tertiary {
+  background-color: var(--color-tertiary);
+}
+
+.quartenary {
+  background-color: var(--color-quartinery);
+}
+
+.note:hover {
+  box-shadow: 5px 5px 5px var(--color-neutral-70);
+  transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+  transition: 0.15s linear;
+}
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.dropDown {
+  order: 3;
+  position: absolute;
+  margin-left: 20em;
+  visibility: hidden;
+}
+
+.note span {
+  order: 2;
+  position: static;
+  margin-right: 0;
+  margin-left: 150px;
+  float: right;
+}
+
+.note h3 {
+  align-content: stretch;
+  order: 1;
+}
+
+.note ul {
+  order: 4;
+  max-height: 85%;
+  min-width: 19em;
+}
+
+li {
+  list-style: square;
+  margin-left: 1.5em;
+}
+
+.note ul > :last-child {
+  margin-bottom: 1em;
+}
