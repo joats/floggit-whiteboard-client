@@ -8,7 +8,8 @@ const DropdownMenu = (props) => {
   const handleClick = (info) => {
     switch (info.key) {
       case 'edit':
-        props.onEdit({ id: props.note.id, title: 'hello', infoList: [...props.note.infoList, 'listItem2'], color: props.note.color });
+        // props.onEdit({ id: props.note.id, title: 'hello', infoList: [...props.note.infoList, 'listItem2'], color: props.note.color });
+        props.onEdit(false);
         break;
       case 'remove':
         props.onRemove(props.note.id);
@@ -42,7 +43,7 @@ const DropdownMenu = (props) => {
               return (
                 <SubMenu key={title} title={title}>
                   {props.colors.map(color => (
-                    <MenuItem key={color}>{color}</MenuItem>
+                    <MenuItem key={color} className={color} />
                   ))}
                 </SubMenu>
               );

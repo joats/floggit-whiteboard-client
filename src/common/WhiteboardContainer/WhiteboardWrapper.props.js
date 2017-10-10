@@ -7,10 +7,12 @@ const props = {
     infoList: PropTypes.arrayOf(PropTypes.string),
     color: PropTypes.string.isRequired,
   })),
+  infoListItems: PropTypes.arrayOf(PropTypes.string),
   handleAdd: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
   handleUpdateText: PropTypes.func.isRequired,
   handleUpdateColor: PropTypes.func.isRequired,
+  handleOnAddInfoListItem: PropTypes.func.isRequired,
 };
 
 export default props;
