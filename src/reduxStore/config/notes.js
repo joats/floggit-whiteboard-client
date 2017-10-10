@@ -34,7 +34,7 @@ const reducer = (state = [], action) => {
 };
 
 // ACTION CREATORS
-const internaladdNote = (id, note) => ({
+const internalAddNote = (id, note) => ({
   type: NOTE_ADD,
   data: {
     id,
@@ -44,12 +44,12 @@ const internaladdNote = (id, note) => ({
   },
 });
 
-const removeNote = id => ({
+const internalRemoveNote = id => ({
   type: NOTE_REMOVE,
   data: { id },
 });
 
-const updateNoteText = note => ({
+const internalUpdateNoteText = note => ({
   type: NOTE_UPDATE_TEXT,
   data: {
     id: note.id,
@@ -58,7 +58,7 @@ const updateNoteText = note => ({
   },
 });
 
-const updateNoteColor = note => ({
+const internalUpdateNoteColor = note => ({
   type: NOTE_UPDATE_COLOR,
   data: {
     id: note.id,
@@ -77,7 +77,16 @@ const replaceNotes = () => dispatch => noteApi.getAll()
   .then(notes => dispatch(internalReplaceNotes(notes)));
 
 const addNote = note => dispatch => noteApi.add(note)
-  .then(id => dispatch(internaladdNote(id, note)));
+  .then(id => dispatch(internalAddNote(id, note)));
+
+const updateNoteText = note => dispatch => noteApi.update(note)
+  .then(() => dispatch(internalUpdateNoteText(note)));
+
+const removeNote = id => dispatch => noteApi.remove(id)
+  .then(() => dispatch(internalRemoveNote(id)));
+
+const updateNoteColor = note => dispatch => noteApi.update(note)
+  .then(() => dispatch(internalUpdateNoteColor(note)));
 
 export { addNote, removeNote, updateNoteText, updateNoteColor, replaceNotes };
 export default reducer;
