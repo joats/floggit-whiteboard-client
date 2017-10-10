@@ -4,7 +4,7 @@ import noteProps from './Note.props';
 import DropdownMenu from './components/DropdownMenu';
 
 const Note = props => (
-  <div className={props.note.color + ' note'}>
+  <div className={`${props.note.color} note`}>
     <span className="glyphicon glyphicon-option-vertical" />
     <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={props.note} onEdit={props.onEdit} onRemove={props.onRemove} onChangeColor={props.onChangeColor} />
     <h3>
