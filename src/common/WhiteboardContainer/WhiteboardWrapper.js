@@ -7,7 +7,7 @@ import AddComponent from '../components/Add';
 
 const WhiteboardWrapper = props => (
   <div className="NoteContainer-wrapper">
-    <InfoComponent logo="../img/logo.svg" />
+    <InfoComponent header="Floggit Whiteboard" logo="" user={'username'} department={'DreamierTeam'} />
     <NoteList
       notes={props.notes}
       onRemove={props.handleRemove}
