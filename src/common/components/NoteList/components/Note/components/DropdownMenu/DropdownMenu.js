@@ -30,7 +30,7 @@ const DropdownMenu = (props) => {
     }
   };
   return (
-    <div style={{ width: '40px' }}>
+    <div className="dropDown">
       <Menu
         openSubMenuOnMouseEnter={false}
         multiple
