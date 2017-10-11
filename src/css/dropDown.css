@@ -416,10 +416,16 @@
 }
 
 .dropDown {
+  cursor: pointer;
   position: absolute;
-  width: 10%;
-  height: 10%;
-  left: 23em;
+  width: auto;
+  right: -16px;
+  top: -25px;
+  z-index: 100;
+}
+
+.rc-menu-submenu-arrow:hover {
+  transform: scale(2);
 }
 
 .rc-menu {
