@@ -1,5 +1,4 @@
 import React from 'react';
-import 'rc-menu/assets/index.css';
 
 import Menu, { SubMenu, Item as MenuItem } from 'rc-menu';
 import dropdownMenuProps from './DropdownMenu.props';
@@ -40,9 +39,9 @@ const DropdownMenu = (props) => {
           {props.titles.map((title) => {
             if (title.includes('color')) {
               return (
-                <SubMenu key={title} title={title}>
+                <SubMenu className="color-sub-menu" key={title} title={title}>
                   {props.colors.map(color => (
-                    <MenuItem key={color} className={color} />
+                    <MenuItem key={color} className={`${color} coloritem`} />
                   ))}
                 </SubMenu>
               );
