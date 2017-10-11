@@ -99,7 +99,6 @@ class Note extends React.Component {
     );
   }
 }
-
 Note.propTypes = noteProps;
 
 export default Note;

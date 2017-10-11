@@ -14,12 +14,12 @@ h1 {
 }
 
 .logo {
-  order: 1;
   width: 80px;
   height: 80px;
   min-width: 10px;
   min-height: 10px;
-  position: sticky;
+  order: 1;
+  background: url(./logo.svg) center no-repeat;
 }
 
 .log-in {
