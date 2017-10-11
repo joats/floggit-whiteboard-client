@@ -8,8 +8,7 @@ const DropdownMenu = (props) => {
   const handleClick = (info) => {
     switch (info.key) {
       case 'edit':
-        // props.onEdit({ id: props.note.id, title: 'hello', infoList: [...props.note.infoList, 'listItem2'], color: props.note.color });
-        props.onEdit(false);
+        props.isEdit();
         break;
       case 'remove':
         props.onRemove(props.note.id);

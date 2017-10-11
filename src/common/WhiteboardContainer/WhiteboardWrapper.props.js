@@ -13,6 +13,7 @@ const props = {
   handleUpdateText: PropTypes.func.isRequired,
   handleUpdateColor: PropTypes.func.isRequired,
   handleOnAddInfoListItem: PropTypes.func.isRequired,
+  handleOnRemoveInfoListItem: PropTypes.func,
 };
 
 export default props;

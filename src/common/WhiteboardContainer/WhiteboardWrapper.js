@@ -11,13 +11,15 @@ const WhiteboardWrapper = props => (
     <NoteList
       notes={props.notes}
       onRemove={props.handleRemove}
-      onEdit={props.handleUpdateText}
+      onSave={props.handleUpdateText}
       onChangeColor={props.handleUpdateColor}
+      onAddInfoListItem={props.handleOnAddInfoListItem}
     />
     <AddComponent
       onAdd={props.handleAdd}
       onAddInfoListItem={props.handleOnAddInfoListItem}
       infoListItems={props.infoListItems}
+      onRemoveInfoListItem={props.handleOnRemoveInfoListItem}
     />
   </div>
 );

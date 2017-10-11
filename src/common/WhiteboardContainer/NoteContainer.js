@@ -1,16 +1,12 @@
 import { connect } from 'react-redux';
 
 import WhiteboardWrapper from './WhiteboardWrapper';
-import { addNote, removeNote, updateNoteText, updateNoteColor, addInfoListItem, clearInfoList } from '../../reduxStore/config/notes';
+import { addNote, removeNote, updateNoteText, updateNoteColor, addInfoListItem, clearInfoList, removeInfoListItem } from '../../reduxStore/config/notes';
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return ({
-    notes: state.notes,
-    infoListItems: state.infoListItems,
-  });
-};
-
+const mapStateToProps = state => ({
+  notes: state.notes,
+  infoListItems: state.infoListItems,
+});
 
 const mapDispatchToProps = dispatch => ({
   handleRemove: (id) => {
@@ -27,8 +23,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateNoteColor(note));
   },
 
-  handleOnAddInfoListItem: (text) => {
-    dispatch(addInfoListItem(text));
+  handleOnAddInfoListItem: (values) => {
+    dispatch(addInfoListItem(values.infoListItem));
+  },
+  handleOnRemoveInfoListItem: (index) => {
+    dispatch(removeInfoListItem(index));
   },
 });
 

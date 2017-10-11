@@ -9,11 +9,11 @@ const NOTE_REPLACE_NOTES = 'NOTE_REPLACE_NOTES';
 const INFO_LIST_ITEM_ADD = 'INFO_LIST_ITEM_ADD';
 const INFO_LIST_CLEAR = 'INFO_LIST_CLEAR';
 const IS_EDIT = 'IS_EDIT';
+const REMOVE_INFO_LIST = 'REMOVE_INFO_LIST';
 
 const initalState = {
   notes: [],
   infoListItems: [],
-  isEdit: false,
 };
 // REDUCER
 const reducer = (state = initalState, action) => {
@@ -51,6 +51,12 @@ const reducer = (state = initalState, action) => {
 
     case IS_EDIT: {
       return Object.assign({}, state, { isEdit: true });
+    }
+
+    case REMOVE_INFO_LIST: {
+      const removedItems = state.infoListItems.filter((item, index) => index !== action.data.index);
+      return Object.assign({}, state,
+        { infoListItems: removedItems });
     }
 
     default:
@@ -108,9 +114,13 @@ const clearInfoList = () => ({
   type: INFO_LIST_CLEAR,
 });
 
-const isEdit = () => ({
-  type: IS_EDIT,
-});
+const removeInfoListItem = index => ({
+  type: REMOVE_INFO_LIST,
+  data: {
+    index,
+  },
+}
+);
 
 const replaceNotes = () => dispatch => noteApi.getAll()
   .then(notes => dispatch(internalReplaceNotes(notes)));
@@ -128,6 +138,5 @@ const updateNoteColor = note => dispatch => noteApi.update(note)
   .then(() => dispatch(internalUpdateNoteColor(note)));
 
 export { addNote, removeNote, updateNoteText, updateNoteColor, replaceNotes };
-export { addInfoListItem, clearInfoList };
-export { isEdit };
+export { addInfoListItem, clearInfoList, removeInfoListItem };
 export default reducer;

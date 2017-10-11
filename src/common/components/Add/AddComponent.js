@@ -2,18 +2,26 @@ import React from 'react';
 import addComponentProps from './AddComponent.props';
 
 const Add = (props) => {
-  console.log(props);
   let inputTitle;
   let inputItem;
+  let inputValues = [];
   const handleClick = () => {
     props.onAdd({ title: inputTitle.value, infoList: props.infoListItems });
-    inputTitle.value = '';
     inputItem.value = '';
+    inputTitle.value = '';
   };
   const handleClickInfoList = () => {
-    props.onAddInfoListItem(inputItem.value);
+    props.onAddInfoListItem({ title: inputTitle.value, infoListItem: inputItem.value });
     inputItem.value = '';
     inputItem.focus();
+  };
+
+  const handleOnRemoveInfoListItem = index => () => {
+    props.onRemoveInfoListItem(index);
+  };
+
+  const handleOnSaveInfoListItem = (index, values) => () => {
+    props.onSaveInfoListItem(index, values);
   };
   return (
     <div>
@@ -27,20 +35,36 @@ const Add = (props) => {
         ref={(c) => { inputItem = c; }}
       />
       <ul>
-        {props.infoListItems.map((infoItem) => {
-          if (!props.isEdit) {
-            console.log('in edit');
-            return (
-              <input defaultValue={infoItem} type="text" />
+        {props.infoListItems.map((infoItem, index) => {
+          if (props.isEdit) {
+            return (<div>
+              <input
+                defaultValue={infoItem}
+                // eslint-disable-next-line
+                key={infoItem+index}
+                ref={c => inputValues.push(c)}
+                type="text"
+              />
+              <button onClick={handleOnSaveInfoListItem(index, inputValues)}>save</button>
+              <button onClick={handleOnRemoveInfoListItem(index)}>X</button>
+            </div>
             );
           }
-          return (<li>{infoItem}</li>);
+          return (<div>
+            <input
+              key={infoItem}
+              defaultValue={infoItem}
+              ref={(c) => { inputValues = c; }}
+              readOnly="readonly"
+            />
+            <button onClick={handleOnRemoveInfoListItem(index)}>X</button>
+          </div>);
         },
         )
         }
       </ul>
       <button onClick={handleClickInfoList}>addItem</button>
-      <button onClick={handleClick} />
+      <button onClick={handleClick}>Add</button>
     </div>
   );
 };

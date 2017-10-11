@@ -11,8 +11,9 @@ const NoteList = props => (
           key={note.id}
           note={note}
           onRemove={props.onRemove}
-          onEdit={props.onEdit}
+          onSave={props.onSave}
           onChangeColor={props.onChangeColor}
+          onAddInfoListItem={props.onAddInfoListItem}
         />
       ))
     }
