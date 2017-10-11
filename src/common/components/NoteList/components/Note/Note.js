@@ -7,17 +7,19 @@ import AddComponent from '../../../Add';
 class Note extends React.Component {
   static generateNote(note, onRemove, onChangeColor, onIsEdit) {
     return (
-      <div className={note.color}>
+      <div className="notecontainer">
         <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={note} isEdit={onIsEdit} onRemove={onRemove} onChangeColor={onChangeColor} />
-        <h1>
-          {note.title}
-        </h1>
-        <ul>
-          {note.infoList.map(info => (
-            <li key={info}>
-              {info}
-            </li>))}
-        </ul>
+        <div className={`${note.color} note`}>
+          <h3>
+            {note.title}
+          </h3>
+          <ul className="note-infolist">
+            {note.infoList.map(info => (
+              <li className="note-infoitem" key={info}>
+                {info}
+              </li>))}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -41,7 +43,10 @@ class Note extends React.Component {
   }
 
   handleOnAdd(values) {
-    this.props.onSave({ id: this.props.note.id, title: values.title, infoList: values.infoList });
+    this.props.onSave({ id: this.props.note.id,
+      title: values.title,
+      infoList: values.infoList,
+      color: this.props.note.color });
     this.setState({ isEdit: false });
   }
 
@@ -60,7 +65,6 @@ class Note extends React.Component {
       infoList: newInfoList });
   }
 
-
   generateEditableNote(note,
     onAddInfoListItem,
     onAdd,
@@ -68,6 +72,7 @@ class Note extends React.Component {
     onSaveInfoListItem) {
     return (
       <AddComponent
+        className="note"
         title={note.title}
         infoListItems={note.infoList}
         onAdd={onAdd}
