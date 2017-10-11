@@ -13,7 +13,7 @@ class Note extends React.Component {
           <h3>
             {note.title}
           </h3>
-          <ul>
+          <ul className="note-infolist">
             {note.infoList.map(info => (
               <li className="note-infoitem" key={info}>
                 {info}
@@ -64,7 +64,6 @@ class Note extends React.Component {
       title: this.props.note.title,
       infoList: newInfoList });
   }
-
 
   generateEditableNote(note,
     onAddInfoListItem,

@@ -6,7 +6,7 @@ div.notecontainer {
 
 div.note {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   height: 20em;
   width: 20em;
   padding: 0.5em;
@@ -61,6 +61,7 @@ ul.note-infolist {
   order: 3;
   max-height: 85%;
   min-width: 19em;
+  bottom: 5px;
 }
 
 li.note-infoitem {
