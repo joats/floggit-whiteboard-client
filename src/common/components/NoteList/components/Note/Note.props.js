@@ -8,8 +8,10 @@ const props = {
     color: PropTypes.string,
   }),
   onRemove: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
   onChangeColor: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool,
+  onAddInfoListItem: PropTypes.func,
 };
 
 export default props;

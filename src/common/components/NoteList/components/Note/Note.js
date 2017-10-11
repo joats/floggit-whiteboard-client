@@ -2,23 +2,103 @@ import React from 'react';
 
 import noteProps from './Note.props';
 import DropdownMenu from './components/DropdownMenu';
+import AddComponent from '../../../Add';
 
-const Note = props => (
-  <div className={`${props.note.color} note`}>
-    <span className="glyphicon glyphicon-option-vertical" />
-    <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={props.note} onEdit={props.onEdit} onRemove={props.onRemove} onChangeColor={props.onChangeColor} />
-    <h3>
-      {props.note.title}
-    </h3>
-    <ul>
-      {props.note.infoList.map(info => (
-        <li key={info}>
-          {info}
-        </li>))}
-    </ul>
-  </div>
-);
+class Note extends React.Component {
+  static generateNote(note, onRemove, onChangeColor, onIsEdit) {
+    return (
+      <div className={note.color}>
+        <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={note} isEdit={onIsEdit} onRemove={onRemove} onChangeColor={onChangeColor} />
+        <h1>
+          {note.title}
+        </h1>
+        <ul>
+          {note.infoList.map(info => (
+            <li key={info}>
+              {info}
+            </li>))}
+        </ul>
+      </div>
+    );
+  }
+  constructor() {
+    super();
+    this.state = {
+      isEdit: false,
+    };
+    this.handleOnAdd = this.handleOnAdd.bind(this);
+    this.handleOnRemoveInfoListItem = this.handleOnRemoveInfoListItem.bind(this);
+    this.handleOnSaveInfoListItem = this.handleOnSaveInfoListItem.bind(this);
+    this.handleIsEdit = this.handleIsEdit.bind(this);
+    this.handleOnAddInfoListItem = this.handleOnAddInfoListItem.bind(this);
+  }
 
+  handleOnAddInfoListItem(values) {
+    this.props.onSave({ id: this.props.note.id,
+      title: this.props.note.title,
+      infoList: [...this.props.note.infoList,
+        values.infoListItem] });
+  }
+
+  handleOnAdd(values) {
+    this.props.onSave({ id: this.props.note.id, title: values.title, infoList: values.infoList });
+    this.setState({ isEdit: false });
+  }
+
+  handleOnRemoveInfoListItem(indexValue) {
+    const newInfoList = this.props.note.infoList.filter((item, index) => (index !== indexValue));
+    this.props.onSave({ id: this.props.note.id,
+      title: this.props.note.title,
+      infoList: newInfoList });
+  }
+
+  handleOnSaveInfoListItem(indexValue, value) {
+    const newInfoList = value.map((item, index) => ((index === indexValue) ?
+      item.value : item.value));
+    this.props.onSave({ id: this.props.note.id,
+      title: this.props.note.title,
+      infoList: newInfoList });
+  }
+
+
+  generateEditableNote(note,
+    onAddInfoListItem,
+    onAdd,
+    onRemoveInfoListItem,
+    onSaveInfoListItem) {
+    return (
+      <AddComponent
+        title={note.title}
+        infoListItems={note.infoList}
+        onAdd={onAdd}
+        onAddInfoListItem={onAddInfoListItem}
+        isEdit={this.state.isEdit}
+        onRemoveInfoListItem={onRemoveInfoListItem}
+        onSaveInfoListItem={onSaveInfoListItem}
+      />
+    );
+  }
+  handleIsEdit() {
+    this.setState({ isEdit: true });
+  }
+  render() {
+    return (<div>
+      <div>{this.state.isEdit}</div>
+      {
+        this.state.isEdit ? this.generateEditableNote(this.props.note,
+          this.handleOnAddInfoListItem,
+          this.handleOnAdd,
+          this.handleOnRemoveInfoListItem,
+          this.handleOnSaveInfoListItem) :
+          Note.generateNote(this.props.note,
+            this.props.onRemove,
+            this.props.onChangeColor,
+            this.handleIsEdit)
+      }
+    </div>
+    );
+  }
+}
 Note.propTypes = noteProps;
 
 export default Note;

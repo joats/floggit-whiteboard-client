@@ -10,7 +10,6 @@ const props = {
   titles: PropTypes.arrayOf(PropTypes.string.isRequired),
   colors: PropTypes.arrayOf(PropTypes.string.isRequired),
   onRemove: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
   onChangeColor: PropTypes.func.isRequired,
 };
 
