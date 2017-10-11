@@ -8,11 +8,11 @@ class Note extends React.Component {
   static generateNote(note, onRemove, onChangeColor, onIsEdit) {
     return (
       <div className="notecontainer">
-        <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={note} isEdit={onIsEdit} onRemove={onRemove} onChangeColor={onChangeColor} />
         <div className={`${note.color} note`}>
           <h3>
             {note.title}
           </h3>
+          <DropdownMenu titles={['edit', 'remove', 'change color']} colors={['primary', 'secondary', 'tertiary', 'quaternary']} note={note} isEdit={onIsEdit} onRemove={onRemove} onChangeColor={onChangeColor} />
           <ul className="note-infolist">
             {note.infoList.map(info => (
               <li className="note-infoitem" key={info}>

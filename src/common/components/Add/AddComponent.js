@@ -24,17 +24,24 @@ const Add = (props) => {
     props.onSaveInfoListItem(index, values);
   };
   return (
-    <div>
+    <div className="add-component note">
       <input
+        className="add-component-title"
         type="text"
+        placeholder="Title"
         defaultValue={props.title}
         ref={(c) => { inputTitle = c; }}
       />
+      <button className="add-btn" onClick={handleClick}>Save</button>
       <input
+        className="add-component-item"
+        type="text"
+        placeholder="Add new item..."
         name="inputItem"
         ref={(c) => { inputItem = c; }}
       />
-      <ul>
+      <button className="add-info-item-btn" onClick={handleClickInfoList}>+</button>
+      <ul className="edit-note">
         {props.infoListItems.map((infoItem, index) => {
           if (props.isEdit) {
             return (<div>
@@ -45,8 +52,11 @@ const Add = (props) => {
                 ref={c => inputValues.push(c)}
                 type="text"
               />
-              <button onClick={handleOnSaveInfoListItem(index, inputValues)}>save</button>
-              <button onClick={handleOnRemoveInfoListItem(index)}>X</button>
+              <button
+                className="add-info-item-btn"
+                onClick={handleOnSaveInfoListItem(index, inputValues)}
+              >+</button>
+              <button className="remove-btn" onClick={handleOnRemoveInfoListItem(index)}>-</button>
             </div>
             );
           }
@@ -57,14 +67,12 @@ const Add = (props) => {
               ref={(c) => { inputValues = c; }}
               readOnly="readonly"
             />
-            <button onClick={handleOnRemoveInfoListItem(index)}>X</button>
+            <button className="remove-btn" onClick={handleOnRemoveInfoListItem(index)}>-</button>
           </div>);
         },
         )
         }
       </ul>
-      <button onClick={handleClickInfoList}>addItem</button>
-      <button onClick={handleClick}>Add</button>
     </div>
   );
 };
