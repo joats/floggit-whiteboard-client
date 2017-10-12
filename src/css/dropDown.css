@@ -413,6 +413,7 @@
 .color-sub-menu ul {
   display: flex;
   flex-wrap: nowrap;
+  left: 5px;
 }
 
 .dropDown {
@@ -428,11 +429,19 @@
   transform: scale(2);
 }
 
+.color-sub-menu .rc-menu-submenu-title .rc-menu-submenu-arrow {
+  visibility: hidden;
+}
+
+.color-sub-menu .rc-menu-submenu-title {
+  margin-left: 5px;
+}
+
 .rc-menu {
   overflow: visible;
 }
 
 .coloritem {
-  width: 1em;
+  width: 0.5em;
   border: var(--color-neutral-70) solid 1px;
 }
